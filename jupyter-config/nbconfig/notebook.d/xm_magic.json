@@ -1,0 +1,5 @@
+{
+  "load_extensions": {
+    "xm_magic/index": true
+  }
+}

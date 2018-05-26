@@ -1,0 +1,7 @@
+{
+  "NotebookApp": {
+    "nbserver_extensions": {
+      "xm_magic_module": true
+    }
+  }
+}
