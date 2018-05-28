@@ -1,0 +1,47 @@
+--- xmidas-old.py	2016-04-07 20:03:51.000000000 +0100
++++ xmidas.py	2018-05-28 21:15:03.000000000 +0100
+@@ -357,7 +357,7 @@
+ 
+ 
+ 
+-def xmshell(s=None):
++def xmshell(s=None, xmstdout=None, xmstderr=None):
+     """
+     Invokes the interactive X-Midas shell if None or no arguments are
+     passed in. Otherwise passes one or more commands to the X-Midas
+@@ -377,7 +377,7 @@
+     e.g. xm(), xm('xplot'), xm.xplot().
+     """
+     if s is None:
+-        _xmshell_sync()
++        _xmshell_sync(xmstdout=xmstdout, xmstderr=xmstderr)
+         return
+ 
+     lines = s.split('\n')
+@@ -411,7 +411,7 @@
+             # the xm.os(...) syntax.
+             line = line[2:]
+         if line:
+-            _xmshell_sync(line)
++            _xmshell_sync(line, xmstdout=xmstdout, xmstderr=xmstderr)
+             line = ''
+ 
+ 
+@@ -1143,13 +1143,13 @@
+             raise AttributeError, k
+         return cmd_wrapper
+ 
+-    def __call__(self, s=None):
+-        xmshell(s)
++    def __call__(self, s=None, xmstdout=None, xmstderr=None):
++        xmshell(s, xmstdout=xmstdout, xmstderr=xmstderr)
+         
+     # loading of the dictionary entry for 'OS' is suppressed, so calling
+     # xm.os(cmd) is identical to xm(cmd)
+-    def os(self, s=None):
+-        xmshell(s)
++    def os(self, s=None, xmstdout=None, xmstderr=None):
++        xmshell(s, xmstdout=xmstdout, xmstderr=xmstderr)
+         
+ 
+ 
