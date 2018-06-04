@@ -98,126 +98,11 @@ def xm(line, cell=None):
 
 
 @register_line_cell_magic
-def xplot(*args, **kwargs):
-    """Wrapper around SigPlot for 1-D plotting
+def xplot():
+    plot1 = SigPlot()
+    plot1.overlay_href("http://sigplot.lgsinnovations.com/dat/penny.prm")
+    plot1.plot()
 
-    Currently supports plotting Python lists, Python tuples, numpy arrays,
-    HTTP/HTTPS-prefixed files, and local files.
-
-    :param \*args: A heterogeneous list of files and/or data lists
-    :type \*args: List[Union[str, numpy.ndarray, List, Tuple]]
-
-    :param \**kwargs: Not implemented yet.
-    :type \**kwargs: Dict[str]
-
-    :Examples:
-    >>> xplot(
-    ...     "http://sigplot.lgsinnovations.com/dat/sin.tmp|http://sigplot.lgsinnovations.com/dat/pulse.tmp",
-    ...     np.arange(0, 4, .001)
-    ... )
-
-    >>> xplot("http://sigplot.lgsinnovations.com/dat/sin.tmp", "http://sigplot.lgsinnovations.com/dat/pulse.tmp")
-
-    >>> import numpy as np
-    >>> f1 = np.sin(np.arange(0, 20, 0.01))
-    >>> f2 = np.cos(np.arange(0, 20, 0.01))
-    >>> xplot(f1, f2)
-
-    --
-
-    Below is the argument and switch list for the XMIDAS primitive XPLOT
-
-    --
-
-    XPLOT - a generic Midas file plotter for X-Windows terminals
-
-    <file(s)>   Filename(s) to be plotted (supports types 1000,2000,3000,5000,
-    6000)
-    <start>     Start abscissa in file (index if IN present below or /INDEX)
-    <end>       End abscissa in file (index if IN present below or /INDEX)
-    <[IN]mode>  Complex mode (MAgnitude,PHase,LOg,etc.) with optional IN prefix
-    <line>      Line type and thickness, 999 for mixed, <0 dashed, >0 solid
-    <ylabel>    Optional ordinate label specifier
-    <ymin>      Forced ordinate minimum (usually autoscaled)
-    <ymax>      Forced ordinate maximum (usually autoscaled)
-
-    Switches:
-      /ALL        Don't limit on-screen data to 32k elements/layer, reread
-    from file
-      /AUTO       Set auto-scale behavior for Y axis: 0=none, 1=min, 2=max,
-    3=both
-              This affects scaling of plot field on startup and during rereads.
-      /AUTOX      Set auto-scale behavior for X axis: 0=none, 1=min, 2=max,
-    3=both
-              This affects scaling of plot field on startup and during rereads.
-      /BS=n       Implements limited backing store for the first n zoom levels
-      /BUF=n      Specifies a buffer limit other than 32k elements
-      /CROSS      Draws crosshairs that follow the mouse in the plotting field
-      /FORCELAB   Forces the usage of /xlab and /ylab values regardless of mode
-      /INDEX      Plots data files by their indices, rather than by abscissa
-    values
-      /NOGRID     X-Plot brought up without dashed grid lines across plotting
-    field
-      /LEGEND     Brings up plot with trace legend in upper right corner
-      /MASK=n     Mask containing which actions to report (see MSGMASK)
-      /MIMIC=id   Id of XPLOT primitive to mimic (use /MSGID on other XPLOT)
-      /MOD        Brings XPLOT up in modify mode
-      /MSGID=id   Id of primitive to report actions to
-      /NOPAN      X-Plot brought up without pan scrollbars
-      /PMT=s      Refresh rate threshold (in seconds) for repeating pan actions
-      /PHUNITS=c  Units for phase plot: 'R'adians, 'D'egrees [default], or
-    'C'ycles
-      /PSFILE=f   Writes out PostScript of initial view to file f
-      /NOSPECS    X-Plot brought up with no display specs or axes (S key to
-    toggle)
-      /NOXAXIS    X-Plot brought up with no x-axis
-      /NOYAXIS    X-Plot brought up with no y-axis
-      /NOREADOUT  X-Plot brought up with no display specs (S key to toggle)
-      /NSEC=n     Splits the plotting field into n sections stacked on top
-              of one another.  Layers are distributed so that layer 1 is in
-              section 1, layer 2 in section 2, etc. wrapping around to the
-              top when there are more layers than sections.
-      /SEGMENT    For type 3/6000 files deriving their abscissa values from
-    the data
-              file do not connect lines between adjacent abscissa values that
-              are non-increasing.  This does not apply to complex data plotted
-              in R vs I mode.
-      /SPECS=c    Brings up plot with specs in 'I'ndex, 'R'ecipr, 'S'lope or
-              'T'imecode (only available when the X axis is also in timecode)
-      /STAY       Does not M$ERROR if command line files cannot be opened
-      /TRACE=(tag=val,...) Used to set line characteristics for all layers.
-              See the HELP /TRACE. LINE types supported are None,Verticals,
-              Horizontals and Connecting (the default.)
-      /XDIV       Number of grid divisions along X axis (>0 appx, <0 exact)
-      /XFMT=fmt   Display format for X cursor position; fmt can be GEN, SCI,
-            VIS, MAN, ENG, HMS, DMS, (fortran format string) or
-            [c format string]
-      /XLAB       Units code for the X scale. Run the UNITS command for a list
-            of possible values.
-      /YDIV       Number of grid divisions along Y axis (>0 appx, <0 exact)
-      /YFMT=fmt   Display format for Y cursor position; fmt can be GEN, SCI,
-            VIS, MAN, ENG, HMS, DMS, (fortran format string) or
-            [c format string]
-      /YINV       Inverts Y scale (min Y value at top, max Y value at top)
-      /YLAB       Units code for the Y scale. Run the UNITS command for a list
-            of possible values.
-
-    """
-    try:
-        plot = SigPlot()
-        display(plot)
-        for arg in args:
-            if isinstance(arg, (tuple, list, np.ndarray)):
-                if isinstance(arg, np.ndarray):
-                    arg = arg.tolist()
-                plot.overlay_array(arg)
-            else:
-                sub_args = arg.split('|')
-                for sub_arg in sub_args:
-                    plot.overlay_href(sub_arg, layer_type="1D")
-    except Exception:
-        clear_output()
-        raise
 
 @register_line_cell_magic
 def xraster(data, **kwargs):
@@ -321,9 +206,9 @@ def xraster(data, **kwargs):
 
             subsize = kwargs.get("subsize", None) or data.shape[-1]
             flattened_data = data.flatten().tolist()
-            plot.overlay_array(flattened_data, subsize=subsize, layer_type="2D")
+            plot.show_array(flattened_data, subsize=subsize, layer_type="2D")
         else:
-            plot.overlay_href(data, layer_type="2D")
+            plot.show_href(data, layer_type="2D")
     except Exception:
         clear_output()
         raise

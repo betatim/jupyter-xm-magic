@@ -4,11 +4,9 @@ import os.path
 import sys
 import warnings
 
-from .xm_magic import (
-    xm,
-    xplot,
-    xraster,
-)
+
+from.sigplot import SigPlot
+
 from IPython.core.magic import (
     Magics,
     magics_class,
@@ -42,17 +40,14 @@ def prepare_js():
 def load_ipython_extension(ipython):
     if sys.version_info[0] == 3:
         warnings.warn ("bluefile and xm extensions not supported by Python 3; functionality will be limited")
-    if _xm is None:
-        warnings.warn("Cannot load 'xm' extension, only loading `xplot` and `xraster` extensions")
-    else:
-        ipython.push("xm")
 
     if bluefile is None:
         warnings.warn("Cannot import 'bluefile', functionality may be limited")
 
     prepare_js()
-    ipython.push("xplot")
-    ipython.push("xraster")
+
+    ipython.push("SigPlot")
+
 
 def unload_ipython_extension(ipython):
     pass
