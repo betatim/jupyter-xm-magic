@@ -53,13 +53,13 @@ Typical usage:
     bluefile.write('file2', hdr, data)
     
 """
-import sys
-import struct
 import os
 import re
-import numpy
+import struct
+import sys
 import warnings
 
+import numpy
 
 try:
     import xmpyapi

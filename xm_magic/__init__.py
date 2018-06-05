@@ -7,11 +7,6 @@ import warnings
 
 from.sigplot import SigPlot
 
-from IPython.core.magic import (
-    Magics,
-    magics_class,
-    register_line_cell_magic,
-)
 from IPython.display import (
     display,
     Javascript
