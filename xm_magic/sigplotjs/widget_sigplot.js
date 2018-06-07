@@ -8,6 +8,7 @@ require.config({
 });
 
 define('sigplot_ext', ["@jupyter-widgets/base", "sigplot"], function(widgets, sigplot) {
+  var img;
   var SigPlotView = widgets.DOMWidgetView.extend({
 
     /**
@@ -26,12 +27,13 @@ define('sigplot_ext', ["@jupyter-widgets/base", "sigplot"], function(widgets, si
         var self = this;
         window.setTimeout(function() {
           self.$el.css('width', '100%');
-          self.$el.css('height', '200px');
+          self.$el.css('height', '350px');
           self.plot.checkresize()
         }, 0);
 
         this.listenTo(this.model, 'change:array_obj', this._plot_from_array, this);
         this.listenTo(this.model, 'change:href_obj', this._plot_from_file, this);
+        this.listenTo(this.model, 'change:done', this._done, this);
 
         // TODO: Figure out how to remove internal Jupyter keyboard shortcuts
         // Jupyter.keyboard_manager.remove_shortcut('x');
@@ -82,10 +84,28 @@ define('sigplot_ext', ["@jupyter-widgets/base", "sigplot"], function(widgets, si
           {layerType: href_obj.layerType},
         );
       }
+    },
+
+    _done: function() {
+      if (this.model.get('done')) {
+        plotLocal=this.plot
+        window.setTimeout(function() {
+          var img = plotLocal._Mx.active_canvas.toDataURL("image/png");
+          var link = document.createElement("a");
+          link.href = img;
+          link.display = img;
+          document.body.appendChild(link);
+          document.body.appendChild(link);
+          //document.write('<ing src="' + img +'"/>');
+          document.body.removeChild(link);
+        }, 2000);
+      }
+
     }
   });
 
   return {
     SigPlotView: SigPlotView
+
   };
 });

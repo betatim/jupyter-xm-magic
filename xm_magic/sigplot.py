@@ -5,6 +5,7 @@ import numpy as np
 from ipywidgets import widgets
 from traitlets import (
     Unicode,
+    Bool,
     Dict
 )
 
@@ -17,6 +18,7 @@ from IPython.core.magic import register_line_cell_magic
 from IPython.display import (
     display,
     clear_output,
+    Image
 )
 
 class SigPlot(widgets.DOMWidget):
@@ -27,7 +29,9 @@ class SigPlot(widgets.DOMWidget):
 
     href_obj = Dict().tag(sync=True)
     array_obj = Dict().tag(sync=True)
+    done = Bool(False).tag(sync=True)
     inputs=[]
+    imageOutput= Unicode("img").tag(sync=True)
     dimension=1
 
     def __init__(self, *args, **kwargs):
@@ -172,6 +176,13 @@ class SigPlot(widgets.DOMWidget):
     def overlay_href(self, path):
         self.inputs.append(path)
 
+
+
+    def displayAsPNG(self):
+        print("Hello")
+
+
+
     @register_line_cell_magic
     def plot(self, layer_type='1D', subsize=None):
         try:
@@ -193,16 +204,18 @@ class SigPlot(widgets.DOMWidget):
                     else:
                         if isinstance(arg, np.ndarray):
                             data = data.tolist()
-
-
                     self.show_array(data, layer_type=layer_type, subsize=subsize)
                 else:
                     sub_args = arg.split('|')
                     for sub_arg in sub_args:
                         self.show_href(sub_arg, layer_type)
+            self.done=True
+            img= Image(self.imageOutput)
+            display(img)
         except Exception:
             clear_output()
             raise
+
 
     @register_line_cell_magic
     def overlay_file(self, path):
