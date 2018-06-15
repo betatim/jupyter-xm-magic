@@ -210,8 +210,6 @@ class SigPlot(widgets.DOMWidget):
                     for sub_arg in sub_args:
                         self.show_href(sub_arg, layer_type)
             self.done=True
-            img= Image(self.imageOutput)
-            display(img)
         except Exception:
             clear_output()
             raise
