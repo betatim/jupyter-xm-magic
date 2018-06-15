@@ -1,5 +1,2 @@
-jupyter contrib nbextension install --user
-jupyter nbextension enable --py widgetsnbextension
-jupyter nbextension install --py --symlink --sys-prefix xm_magic
-jupyter nbextension enable --py --sys-prefix xm_magic
+python setup.py install
 jupyter trust SigPlotExtensionTest.ipynb
