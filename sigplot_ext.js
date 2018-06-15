@@ -31,6 +31,14 @@ define('sigplot_ext', ["@jupyter-widgets/base", "sigplot"], function(widgets, si
           self.plot.checkresize()
         }, 0);
 
+        // if we already have an array, plot it
+        if (this.model.get('array_obj')) {
+            this._plot_from_array();
+        }
+        if (this.model.get('href_obj')) {
+            this._plot_from_file();
+        }
+
         this.listenTo(this.model, 'change:array_obj', this._plot_from_array, this);
         this.listenTo(this.model, 'change:href_obj', this._plot_from_file, this);
         this.listenTo(this.model, 'change:done', this._done, this);
