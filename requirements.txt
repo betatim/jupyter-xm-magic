@@ -33,6 +33,7 @@ jupyter==1.0.0
 jupyter-client==5.2.3
 jupyter-console==5.2.0
 jupyter-core==4.4.0
+jupyter_contrib_nbextensions
 jupyter-sphinx==0.1.2
 kiwisolver==1.0.1
 MarkupSafe==1.0
@@ -78,4 +79,4 @@ wcwidth==0.1.7
 webencodings==0.5.1
 whichcraft==0.4.1
 widgetsnbextension==3.2.1
-
+XMMagic==0.0.1
