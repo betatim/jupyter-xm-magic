@@ -1,8 +1,8 @@
-jupyter contrib nbextension install --user
+python -m matlab_kernel install --user
 pip install -e .
 python setup.py install
 pip install XMMagic
-jupyter nbextension enable xm_magic
+jupyter nbextension enable  xm_magic
 jupyter nbextension enable xm_magic/sigplotjs
 jupyter nbextension enable xm_magic/sigplotjs/widget_sigplot
 jupyter trust SigPlotExtensionTest.ipynb
