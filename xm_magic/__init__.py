@@ -29,7 +29,7 @@ __version__ = '0.0.1'
 def prepare_js():
     pkgdir = os.path.dirname(__file__)
     sigplotdir = os.path.join(pkgdir, 'sigplotjs')
-    nbextensions.install_nbextension(sigplotdir, symlink=True, overwrite=True, destination="sigoplotjs")
+    nbextensions.install_nbextension(sigplotdir, symlink=True, overwrite=True, destination="sigplotjs")
     display(Javascript("utils.load_extensions('sigplotjs/widget_sigplot');"))
 
 def load_ipython_extension(ipython):
