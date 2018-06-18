@@ -3,5 +3,7 @@
 # jupyter nbextension enable widgetsnbextension
 # jupyter nbextension install --py --symlink --sys-prefix xm_magic
 # jupyter nbextension enable --py --sys-prefix xm_magic
-# jupyter nbextension enable --py --sys-prefix xm_magic/sigplotjs
+# jupyter nbextension enable --py --sys-prefix xm_magic
+# jupyter nbextension enable --py --sys-prefix xm_magic
+# jupyter nbextension enable --py --sys-prefix xm_magic
 # jupyter trust SigPlotExtensionTest.ipynb
