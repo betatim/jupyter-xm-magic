@@ -1,5 +1,4 @@
 jupyter contrib nbextension install --user
 pip install -e .
 python setup.py install
-jupyter trust .
 jupyter trust SigPlotExtensionTest.ipynb
