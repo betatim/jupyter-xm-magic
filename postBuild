@@ -7,4 +7,5 @@ pip install XMMagic
 jupyter nbextension install --sys-prefix xm_magic/static/index.js
 jupyter nbextension enable --sys-prefix jupyter-config/nbconfig/notebook.d/xm_magic.json
 jupyter serverextension enable --sys-prefix jupyter-config/jupyter_notebook_config.d/xm_magic.json
+jupyter nbextension enable --sys-prefix xm_magic
 jupyter trust SigPlotExtensionTest.ipynb
