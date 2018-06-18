@@ -1,8 +1,4 @@
-pip install jupyter
-jupyter contrib nbextension install --user
 pip install -e .
 pip install --user jupyter
-python setup.py install
-pip install XMMagic
 python setup.py install
 jupyter trust SigPlotExtensionTest.ipynb
