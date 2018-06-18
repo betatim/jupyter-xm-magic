@@ -1,3 +1,5 @@
-pip install -e .
-python setup.py install
-jupyter trust SigPlotExtensionTest.ipynb
+# pip install -e .
+# python setup.py install
+# jupyter nbextension enable --sys-prefix
+# jupyter nbextension enable --py xm_magic
+# jupyter trust SigPlotExtensionTest.ipynb
