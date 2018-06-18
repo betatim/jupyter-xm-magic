@@ -1,9 +1,13 @@
-# pip install -e .
-# python setup.py install
-# jupyter nbextension enable widgetsnbextension
-# jupyter nbextension install --py --symlink --sys-prefix xm_magic
-# jupyter nbextension enable --py --sys-prefix xm_magic
-# jupyter nbextension enable --py --sys-prefix xm_magic
-# jupyter nbextension enable --py --sys-prefix xm_magic
-# jupyter nbextension enable --py --sys-prefix xm_magic
-# jupyter trust SigPlotExtensionTest.ipynb
+jupyter contrib nbextension install --user
+pip install -e .
+python setup.py install
+jupyter nbextension enable widgetsnbextension
+jupyter nbextension install --py --symlink --sys-prefix xm_magic
+jupyter nbextension enable --py --sys-prefix xm_magic
+jupyter nbextension enable --py --sys-prefix xm_magic/sigplotjs
+jupyter nbextension enable --py --sys-prefix xm_magic/sigplotjs/sigplot_ext
+jupyter nbextension enable --py --sys-prefix xm_magic/sigplotjs/sigplot_debug
+jupyter nbextension enable --py --sys-prefix xm_magic/sigplotjs/sigplot_ext/widget_sigplot
+jupyter nbextension enable --py --sys-prefix xm_magic/sigplotjs/sigplot_ext/widget_test
+jupyter trust .
+jupyter trust SigPlotExtensionTest.ipynb
