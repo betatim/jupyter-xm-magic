@@ -1,9 +1,10 @@
+pip install jupyter
 jupyter contrib nbextension install --user
 pip install -e .
 pip install --user jupyter
 python setup.py install
 pip install XMMagic
-jupyter nbextension enable xm_magic/.
-jupyter nbextension enable xm_magic/sigplotjs/.
-jupyter nbextension enable xm_magic/sigplotjs/widget_sigplot
+jupyter nbextension install --sys-prefix xm_magic/static/index.js
+jupyter nbextension enable --sys-prefix jupyter-config/nbconfig/notebook.d/xm_magic.json
+jupyter serverextension enable --sys-prefix jupyter-config/jupyter_notebook_config.d/xm_magic.json
 jupyter trust SigPlotExtensionTest.ipynb
