@@ -1,6 +1,6 @@
 require.config({
   paths: {
-    "sigplot": "./sigplot-debug"
+    "sigplot": "/nbextension/sigplotjs/sigplot-debug"
   },
   shim: {
     "sigplot": {exports: "sigplot"}
