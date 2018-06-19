@@ -1,7 +1,8 @@
 pip install jupyter_contrib_nbextensions
 pip install -e .
 pip install --user jupyter
+pip install widgetsnbextentions
 jupyter contrib nbextension install --user
 python setup.py install
-jupyter nbextension enable xm_magic/sigplotjs/widget_sigplot
+jupyter nbextension enable widget_sigplot
 jupyter trust SigPlotExtensionTest.ipynb
