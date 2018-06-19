@@ -1,6 +1,6 @@
 require.config({
   paths: {
-    "sigplot": "jupyter-xm-magic/nbextensions/sigplotjs/sigplot-debug"
+    "sigplot": "/nbextensions/sigplotjs/sigplot-debug"
   },
   shim: {
     "sigplot": {exports: "sigplot"}
