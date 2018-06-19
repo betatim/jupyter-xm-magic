@@ -1,6 +1,6 @@
 require.config({
   paths: {
-    "sigplot": "/xm_magic/sigplotjs/sigplot-debug"
+    "sigplot": "./sigplot-debug"
   },
   shim: {
     "sigplot": {exports: "sigplot"}
