@@ -30,7 +30,6 @@ def prepare_js():
     pkgdir = os.path.dirname(__file__)
     sigplotdir = os.path.join(pkgdir, 'sigplotjs')
     nbextensions.install_nbextension(sigplotdir, user=True, overwrite=True, symlink=True)
-    display(Javascript("utils.load_extensions('sigplotjs/sigplot-debug');"))
     display(Javascript("utils.load_extensions('sigplotjs/widget_sigplot');"))
 
 
