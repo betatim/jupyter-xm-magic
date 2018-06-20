@@ -1,49 +1,40 @@
-# X-MIDAS Jupyter Notebook Magic!
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/amatma/jupyter-xm-magic/master)
 
-![magic](magic.gif)
+
+# SigPlot Jupyter Notebook Extension!
 
 ## Installation
-
+- Download extension from [GitHub](https://github.com/amatma/jupyter-xm-magic)
 - Install Python 2.6+ or 3.5+
 - Install `pip` (usually bundled with Python)
 - Install Jupyter using `pip`
-- Note: you do not need X-MIDAS installed to use the inline plotting via [SigPlot](https://github.com/lgsinnovations/sigplot).
+- Note: you do not need X-MIDAS installed to use  [SigPlot](https://github.com/lgsinnovations/sigplot).
 
 ```
 pip install jupyter
 ```
 
-- Install the XMIDAS Jupyter Notebook extension
+- Install the SigPlot Jupyter Notebook extension
 
 ```
 [/path/to/ipython-xm-magic]$ python setup.py install
 ```
-
-## Running
-
-- To enable the `xm` extension so you can run X-MIDAS commands from the notebook, start X-MIDAS, ensure XMPY is added to the path, and launch jupyter with `xmpy`
-
-```
-$ xmstart
-$ xm
-X-MIDAS> xmp +xmpy
-Configuration: XMPY,SYS
-X-Midas> pyenv
-Establishing XMPY build environment
-X-MIDAS> xmjupyter
-...
-```
-
 - If you only want the SigPlot interactive plotting, you can just run
 
-```
 $ jupyter notebook
-```
 
-In either case, once the notebook has launched, loading the `xm` extension is pretty straightforward, just run
-
+In either case, once the notebook has launched, loading the extension is pretty straightforward, just run
 ```
 %load_ext xm_magic
-```
 
-and voilà!
+```
+## SigPlot Usage
+- Sigplot(args*) - creates a sigplot with each arg as input data
+- overlay_array(data) - adds an array of numbers to the sigplot's input data
+- overlay_href(path) - adds data from an online source to the sigplot
+- overlay_file(path) - adds data from a file to the sigplot
+- plot() - displays an interactive sigplot 
+
+## MyBinder Usage
+- The sigplot extension often does not load when the notebook is rendered, just run the %load_ext xm_magic cell and refresh the page
+- Data from URLs and files does not load properly
