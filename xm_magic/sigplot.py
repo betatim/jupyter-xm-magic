@@ -162,6 +162,7 @@ class SigPlot(widgets.DOMWidget):
                 try:
                     os.symlink(fpath, file_in_data_dir)
                 except FileExistsError:
+
                     pass
 
                 # set ``fpath`` to just the relative path so we can get it via
