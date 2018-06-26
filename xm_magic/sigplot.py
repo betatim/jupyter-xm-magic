@@ -8,6 +8,7 @@ from traitlets import (
     Bool,
     Dict
 )
+import requests
 
 try:
     import bluefile

@@ -104,7 +104,6 @@ define('sigplot_ext', ["@jupyter-widgets/base", "sigplot"], function(widgets, si
           link.display = img;
           document.body.appendChild(link);
           document.body.appendChild(link);
-          //document.write('<ing src="' + img +'"/>');
           document.body.removeChild(link);
         }, 2000);
       }
