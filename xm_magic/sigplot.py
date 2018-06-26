@@ -41,10 +41,7 @@ class SigPlot(widgets.DOMWidget):
         """
         self.inputs=[]
         for arg in args:
-            if isinstance(arg, str):
-                self.overlay_href(arg)
-            else :
-                self.inputs.append(arg)
+            self.inputs.append(arg)
         super(SigPlot, self).__init__(**kwargs)
 
     def show_array(self, data, layer_type="1D", subsize=None):
@@ -178,20 +175,7 @@ class SigPlot(widgets.DOMWidget):
 
     @register_line_cell_magic
     def overlay_href(self, path):
-        if path.startswith("http"):
-            url= path
-            r= requests.get(url)
-            filename= './'+ self.getFileName(path)
-            with open(filename, 'wb') as f:
-                f.write(r.content)
-            self.inputs.append(filename)
-        else:
-            self.inputs.append(path)
-
-    def getFileName(self, path):
-        dirs=path.split('/')
-        return dirs[len(dirs)-1]
-
+        self.inputs.append(path)
 
 
 
