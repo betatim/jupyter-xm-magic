@@ -22,6 +22,10 @@ from IPython.display import (
     Image
 )
 
+class URL:
+    def __init__(self, url):
+        self.url = url
+
 class SigPlot(widgets.DOMWidget):
     _view_module_version = Unicode('0.0.1')
 
@@ -176,7 +180,7 @@ class SigPlot(widgets.DOMWidget):
 
     @register_line_cell_magic
     def overlay_href(self, path):
-        self.inputs.append(path)
+        self.inputs.append(URL(path))
 
 
 
@@ -207,6 +211,11 @@ class SigPlot(widgets.DOMWidget):
                         if isinstance(arg, np.ndarray):
                             data = data.tolist()
                     self.show_array(data, layer_type=layer_type, subsize=subsize)
+                elif isinstance(arg, URL):
+                    self.href_obj = {
+                        "filename": arg.url,
+                        "layerType": layer_type,
+                    }
                 else:
                     sub_args = arg.split('|')
                     for sub_arg in sub_args:
