@@ -1,6 +1,6 @@
 require.config({
   paths: {
-    "sigplot": "./sigplot-debug"
+    "sigplot": "../nbextensions/sigplotjs/sigplot-debug"
   },
   shim: {
     "sigplot": {exports: "sigplot"}
@@ -76,12 +76,7 @@ define('sigplot_ext', ["@jupyter-widgets/base", "sigplot"], function(widgets, si
       } else {
         var url = href_obj.filename;
         if (!url.startsWith("http")) {
-          url = window.location.protocol + '//' + window.location.host + '/files/' + url;
-          console.log(url);
-        } else {
-          var svr = window.location.href.split("/").slice(0, -2).join("/")+"/";
-          url = svr + "files/" + href_obj.filename;
-          console.log(url);
+          url= window.location.href.split("/").slice(0, -2).join("/")+"/files/"+ url;
         }
         this.plot.overlay_href(
           url,
@@ -114,7 +109,6 @@ define('sigplot_ext', ["@jupyter-widgets/base", "sigplot"], function(widgets, si
 
   };
 });
-
 
 
 
