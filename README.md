@@ -30,4 +30,4 @@ Once the notebook has launched, loading the extension is pretty straightforward,
 - overlay_array(data) - adds an array of numbers to the sigplot's input data
 - overlay_href(path) - adds data from an online source to the sigplot
 - overlay_file(path) - adds data from a file to the sigplot
-- plot() - displays an interactive sigplot 
+- plot() - displays an interactive sigplot  
