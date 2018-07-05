@@ -78,6 +78,10 @@ define('sigplot_ext', ["@jupyter-widgets/base", "sigplot"], function(widgets, si
         if (!url.startsWith("http")) {
           url = window.location.protocol + '//' + window.location.host + '/files/' + url;
           console.log(url);
+        } else {
+          var svr = window.location.href.split("/").slice(0, -2).join("/")+"/";
+          url = svr + "files/" + href_obj.filename;
+          console.log(url);
         }
         this.plot.overlay_href(
           url,
