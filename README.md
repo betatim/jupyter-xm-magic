@@ -1,9 +1,6 @@
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/amatma/jupyter-xm-magic/master)
+# SigPlot Jupyter Notebook Extension! [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/amatma/jupyter-xm-magic/master?filepath=SigPlotExtensionTest.ipynb)
 
-
-# SigPlot Jupyter Notebook Extension!
-
-## Installation
+## Installation (If not runnign the notebook on [myBinder](https://mybinder.org/v2/gh/amatma/jupyter-xm-magic/master?filepath=SigPlotExtensionTest.ipynb))
 - Download extension from [GitHub](https://github.com/amatma/jupyter-xm-magic)
 - Install Python 2.6+ or 3.5+
 - Install `pip` (usually bundled with Python)
@@ -19,11 +16,11 @@ pip install jupyter
 ```
 [/path/to/ipython-xm-magic]$ python setup.py install
 ```
-- If you only want the SigPlot interactive plotting, you can just run
+- To launch the notebook, simply run:
 
 $ jupyter notebook
 
-In either case, once the notebook has launched, loading the extension is pretty straightforward, just run
+Once the notebook has launched, loading the extension is pretty straightforward, just run
 ```
 %load_ext xm_magic
 
@@ -34,7 +31,3 @@ In either case, once the notebook has launched, loading the extension is pretty 
 - overlay_href(path) - adds data from an online source to the sigplot
 - overlay_file(path) - adds data from a file to the sigplot
 - plot() - displays an interactive sigplot 
-
-## MyBinder Usage
-- The sigplot extension often does not load when the notebook is rendered, just run the %load_ext xm_magic cell and refresh the page
-- Data from URLs and files does not load properly
